@@ -18,7 +18,7 @@ public class SparkPiProducer implements Serializable {
             l.add(i);
         }
 
-        JavaRDD<Integer> dataSet = jsc.parallelize(l, scale);
+        JavaRDD<Integer> dataSet = jsc.parallelize(l, scale).repartition(10);
 
         int count = dataSet.map(integer -> {
             double x = Math.random() * 2 - 1;
